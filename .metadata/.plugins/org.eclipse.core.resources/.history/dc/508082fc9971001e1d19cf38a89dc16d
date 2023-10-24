@@ -1,0 +1,18 @@
+package com.pksoftware.serviceimpl;
+
+import org.springframework.web.client.RestTemplate;
+
+import com.pksoftware.controller.entity.AllManage;
+import com.pksoftware.service.Microservices;
+
+public class OfficeServiceImpl implements Microservices {
+
+	RestTemplate template;
+	
+	@Override
+	public AllManage microserviceWithRestTemplate(int id) {
+		
+		return null;
+	}
+
+}

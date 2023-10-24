@@ -1,0 +1,16 @@
+package com.pksoftware.entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class HRCollege {
+
+		private String s_no;
+		private int collegeCode;
+		private String collegeName;
+		private String stdName;
+		private String stdAdd;
+		private int age;
+		private int roll;
+		private float fee;
+}

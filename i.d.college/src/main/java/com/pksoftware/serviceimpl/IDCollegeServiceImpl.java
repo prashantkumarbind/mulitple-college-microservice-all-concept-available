@@ -1,0 +1,65 @@
+package com.pksoftware.serviceimpl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.pksoftware.dao.IDCollegeDao;
+import com.pksoftware.entity.IDCollege;
+import com.pksoftware.service.IDCollegeService;
+
+@Component
+public class IDCollegeServiceImpl implements IDCollegeService{
+
+	
+		@Autowired
+		IDCollegeDao collegeDao;
+
+		@Override
+		public IDCollege insert(IDCollege college) {
+			   IDCollege college2 = collegeDao.save(college);	
+			   return college2;
+		}
+
+		@Override
+		public IDCollege update(IDCollege college) {
+			   IDCollege college2 = null;
+			   Optional<IDCollege> optional = collegeDao.findById(college.getS_no());
+			   if(optional.isPresent())
+			   {
+				     college2 = collegeDao.save(college);
+			   }
+			return college2;
+		}
+
+		@Override
+		public List<IDCollege> select() {
+			   List<IDCollege> colleges = collegeDao.findAll();
+			return colleges;
+		}
+
+		@Override
+		public String delete(int id) {
+			   String message ="not found";
+			   Optional<IDCollege> opt = collegeDao.findById(id);
+			   if(opt.isPresent())
+			   {
+				         collegeDao.deleteById(id);
+				         message = "delete successfully";
+			   }
+			return message;
+		}
+
+		@Override
+		public IDCollege getById(int id) {
+			   IDCollege idcollege = null;
+			   Optional<IDCollege> opt = collegeDao.findById(id);
+			   if(opt.isPresent())
+			   {
+				    idcollege = opt.get();
+			   }
+			return idcollege;
+		}
+}

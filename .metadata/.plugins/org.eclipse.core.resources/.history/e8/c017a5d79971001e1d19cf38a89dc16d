@@ -1,0 +1,14 @@
+package com.pksoftware.serviceimpl;
+
+import com.pksoftware.controller.entity.AllManage;
+import com.pksoftware.service.Microservices;
+
+public class OfficeServiceImpl implements Microservices {
+
+	@Override
+	public AllManage microserviceWithRestTemplate(int id) {
+		
+		return null;
+	}
+
+}

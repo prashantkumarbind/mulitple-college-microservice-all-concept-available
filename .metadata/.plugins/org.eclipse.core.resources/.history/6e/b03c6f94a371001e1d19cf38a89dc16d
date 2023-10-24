@@ -1,0 +1,28 @@
+package com.pksoftware.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pksoftware.controller.entity.AllManage;
+import com.pksoftware.service.Microservices;
+
+@RestController
+public class OfficeController {
+
+		@Autowired
+		Microservices microservices;
+	
+		@GetMapping("/testing/{name}")
+		public String getName(@PathVariable String name) {
+			   return "Your Input Name is the ::"+name;
+		}
+		
+		@GetMapping("/office/{id}")
+		public AllManage microservice1(@PathVariable int id) {
+			   AllManage allManage1 = microservice1(id);
+			   return allManage1;
+		}
+		
+}

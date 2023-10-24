@@ -1,0 +1,70 @@
+package com.pksoftware.serviceimpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import com.pksoftware.controller.entity.AllManage;
+import com.pksoftware.controller.entity.HRCollege;
+import com.pksoftware.controller.entity.IDCollege;
+import com.pksoftware.controller.entity.PKCollege;
+import com.pksoftware.service.Microservices;
+
+
+@Component
+public class OfficeServiceImpl implements Microservices {
+
+	@Autowired
+	RestTemplate template;
+	AllManage allManage;
+	@Override
+	public AllManage microservices(int id) {
+		
+		//first we are use the exchange method
+//		ResponseEntity<HRCollege> hrentity = template.exchange("http://localhost:8199/hrcollege/"+id, HttpMethod.GET, null, HRCollege.class);
+//		ResponseEntity<PKCollege> pkentity = template.exchange("http://localhost:8197/pkcollege/"+id, HttpMethod.GET, null, PKCollege.class);
+//		ResponseEntity<IDCollege> identity = template.exchange("http://localhost:8198/idcollege/"+id, HttpMethod.GET, null, IDCollege.class);
+//		allManage = new AllManage();
+//	    allManage.setHrcollege(hrentity.getBody());
+//	    allManage.setPkcollege(pkentity.getBody());
+//	    allManage.setIdcollege(identity.getBody());
+//		return allManage;
+		return null;
+	}
+	
+	
+	
+	@Override
+	public PKCollege pkWork(int id) {
+		  	RestTemplate t = new RestTemplate();
+			ResponseEntity<PKCollege> pkentity = t.exchange("http://localhost:8197/pkcollege/"+id, HttpMethod.GET, null, PKCollege.class);
+			return pkentity.getBody();
+	}
+	
+	
+	@Override
+	public String check() {
+		  RestTemplate t = new RestTemplate();
+		  ResponseEntity<String> message = t.exchange("http://localhost:8197/check", HttpMethod.GET, null, String.class);
+		  return message.getBody();
+	}
+
+
+
+	@Override
+	public HRCollege hrWork(int id) {
+		  
+		return null;
+	}
+
+
+
+	@Override
+	public IDCollege idWork(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

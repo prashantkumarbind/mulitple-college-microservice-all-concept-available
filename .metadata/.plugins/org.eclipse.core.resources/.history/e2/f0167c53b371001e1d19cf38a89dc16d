@@ -1,0 +1,10 @@
+package com.pksoftware.service;
+
+import com.pksoftware.controller.entity.AllManage;
+import com.pksoftware.controller.entity.PKCollege;
+
+public interface Microservices {
+
+		   AllManage microservices(int id);
+		   PKCollege pkWork(int id);
+}

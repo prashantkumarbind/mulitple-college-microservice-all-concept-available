@@ -1,0 +1,34 @@
+package com.pksoftware.serviceimpl;
+
+import java.util.List;
+
+import com.pksoftware.entity.HRCollege;
+import com.pksoftware.service.HRCollegeService;
+
+public class HRCollegeServiceImpl implements HRCollegeService{
+
+	@Override
+	public HRCollege insert(HRCollege college) {
+		
+		return null;
+	}
+
+	@Override
+	public List<HRCollege> select() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HRCollege update(HRCollege college) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String delete() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,21 @@
+package com.pksoftware.feignservice;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.pksoftware.controller.entity.HRCollege;
+
+@FeignClient(url="http://localhost:8199", value="HRCollege")
+public interface HRCollegeFeignClientService {
+
+	
+		@GetMapping("/hrcollege/{id}")
+		HRCollege hrCollegeDataByFeignClient(@PathVariable int id);
+		
+		@GetMapping("/hrCollege")
+		List<HRCollege> hrCollegeAllDataByFiegnClient();
+		
+}

@@ -1,0 +1,18 @@
+package com.pksoftware.controller.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class AllManage {
+	
+	PKCollege pkcollege;
+	HRCollege hrcollege;
+	IDCollege idcollege;
+	
+	
+
+}

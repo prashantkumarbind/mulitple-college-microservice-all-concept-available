@@ -1,0 +1,7 @@
+package com.pksoftware.service;
+
+
+
+public interface HRCollegeService {
+
+}

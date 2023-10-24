@@ -1,0 +1,9 @@
+package com.pksoftware.controller.entity;
+
+public class AllManage {
+	
+	PKCollege pkcollege;
+	HRCollege hrcollege;
+	IDCollege idcollege;
+
+}

@@ -1,0 +1,8 @@
+package com.pksoftware.dao;
+
+
+
+
+public interface PKCollegeDao {
+
+}

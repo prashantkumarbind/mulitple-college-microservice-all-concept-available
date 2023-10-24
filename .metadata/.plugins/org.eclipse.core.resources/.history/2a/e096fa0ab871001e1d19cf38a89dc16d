@@ -1,0 +1,14 @@
+package com.pksoftware.controller.entity;
+
+public class IDCollege {
+
+	
+	private int s_no;
+	private int collegeCode;
+	private String collegeName;
+	private String stdName;
+	private String stdAdd;
+	private int age;
+	private int roll;
+	private float fee;
+}

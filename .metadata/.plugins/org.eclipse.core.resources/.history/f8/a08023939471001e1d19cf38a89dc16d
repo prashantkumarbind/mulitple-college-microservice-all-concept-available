@@ -1,0 +1,13 @@
+package com.pksoftware.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class OfficeController {
+
+	
+		@GetMapping("/testing/{name}")
+		public String getName(@PathVariable String name) {
+			   return "Your Input Name is the ::"+name;
+		}
+}

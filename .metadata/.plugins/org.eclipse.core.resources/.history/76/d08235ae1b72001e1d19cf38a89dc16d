@@ -1,0 +1,19 @@
+package com.pksoftware.service;
+
+import com.pksoftware.controller.entity.AllManage;
+import com.pksoftware.controller.entity.HRCollege;
+import com.pksoftware.controller.entity.IDCollege;
+import com.pksoftware.controller.entity.PKCollege;
+
+public interface Microservices {
+
+		   AllManage microservices(int id);
+		   PKCollege pkWork(int id);
+		   String check();
+		   HRCollege hrWork(int id);
+		   IDCollege idWork(int id);
+		   String hrTesting(String name);
+		   /*************************************/
+		   AllManage secondMethod(int id);
+		   
+}

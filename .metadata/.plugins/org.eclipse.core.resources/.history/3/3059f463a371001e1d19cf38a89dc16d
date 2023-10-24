@@ -1,0 +1,8 @@
+package com.pksoftware.service;
+
+import com.pksoftware.controller.entity.AllManage;
+
+public interface Microservices {
+
+		   AllManage microserviceWithRestTemplate(int id);
+}

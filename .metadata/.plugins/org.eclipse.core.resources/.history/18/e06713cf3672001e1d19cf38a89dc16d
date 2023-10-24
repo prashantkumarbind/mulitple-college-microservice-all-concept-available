@@ -1,0 +1,130 @@
+package com.pksoftware.serviceimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import com.pksoftware.controller.entity.AllManage;
+import com.pksoftware.controller.entity.HRCollege;
+import com.pksoftware.controller.entity.IDCollege;
+import com.pksoftware.controller.entity.PKCollege;
+import com.pksoftware.feignservice.IDCollegeOpenFeignClientService;
+import com.pksoftware.feignservice.PKCollegeFeignClient;
+import com.pksoftware.service.Microservices;
+
+
+@Component
+public class OfficeServiceImpl implements Microservices {
+
+	@Autowired
+	RestTemplate template;
+	
+	@Autowired
+	IDCollegeOpenFeignClientService idClientService;
+	
+	@Autowired
+	PKCollegeFeignClient pkCollegeFeignClient;
+	
+	AllManage allManage;
+	@Override
+	public AllManage microservices(int id) {
+		
+		//first we are use the exchange method
+//		ResponseEntity<HRCollege> hrentity = template.exchange("http://localhost:8199/hrcollege/"+id, HttpMethod.GET, null, HRCollege.class);
+		ResponseEntity<PKCollege> pkentity = template.exchange("http://localhost:8197/pkcollege/"+id, HttpMethod.GET, null, PKCollege.class);
+		ResponseEntity<IDCollege> identity = template.exchange("http://localhost:8198/idcollege/"+id, HttpMethod.GET, null, IDCollege.class);
+		allManage = new AllManage();
+//	    allManage.setHrcollege(hrentity.getBody());
+	    allManage.setPkcollege(pkentity.getBody());
+	    allManage.setIdcollege(identity.getBody());
+		return allManage;
+	}
+	
+	
+	
+	@Override
+	public PKCollege pkWork(int id) {
+//		  	RestTemplate t = new RestTemplate();
+			ResponseEntity<PKCollege> pkentity = template.exchange("http://localhost:8197/pkcollege/"+id, HttpMethod.GET, null, PKCollege.class);
+			return pkentity.getBody();
+	}
+	
+	
+	@Override
+	public String check() {
+//		  RestTemplate t = new RestTemplate();
+		  ResponseEntity<String> message = template.exchange("http://localhost:8197/check", HttpMethod.GET, null, String.class);
+		  return message.getBody();
+	}
+
+
+
+	@Override
+	public HRCollege hrWork(int id) {
+		   ResponseEntity<HRCollege> hrentity = template.exchange("http://localhost:8199/hrcollege/"+id, HttpMethod.GET, null, HRCollege.class);
+		   return hrentity.getBody();
+	}
+
+
+	@Override
+	public IDCollege idWork(int id) {
+		   ResponseEntity<IDCollege> identity = template.exchange("http://localhost:8198/idcollege/"+id, HttpMethod.GET, null, IDCollege.class);	
+		   return identity.getBody();
+	}
+
+
+
+	@Override
+	public String hrTesting(String name) {
+		   ResponseEntity<String> hrcheck = template.exchange("http://localhost:8199/testing/"+name, HttpMethod.GET, null, String.class);	
+		return hrcheck.getBody();
+	}
+
+
+
+	@Override
+	public AllManage secondMethodUse(int id) {
+		//use of the second method getByObject
+	   try {
+		HRCollege hrdata = template.getForObject("http://localhost:8199/hrcollege/"+id, HRCollege.class);
+		PKCollege pkdata = template.getForObject("http://localhost:8197/pkcollege/"+id, PKCollege.class);
+		IDCollege iddata = template.getForObject("http://localhost:8198/idcollege/"+id, IDCollege.class);
+		allManage = new AllManage();
+		allManage.setHrcollege(hrdata);
+		allManage.setPkcollege(pkdata);
+		allManage.setIdcollege(iddata);
+	   }catch(Exception e) {
+		   System.out.println("exception occure in the office package OfficeServiceImple::"+e);
+	   }
+		return allManage;
+	}
+
+		// below total use of the OpenFeignClient Concept
+
+	@Override
+	public IDCollege idCollegeDataByFeignClient(int id) {
+		   IDCollege idobject = idClientService.idCollegeData(id);
+		return idobject;
+	}
+
+
+
+	@Override
+	public List<IDCollege> idCollegeAllDataByFeignClient() {
+		List<IDCollege> list = idClientService.idcollegeAllDataByFeignCleint();
+		return list;
+	}
+
+
+
+	@Override
+	public PKCollege pkCollegeDataByFeignClient(int id) {
+		PKCollege pkCollege = pkCollegeFeignClient.pkCollegeDataByFeignClient(id);
+		return pkCollege;
+	}
+
+}

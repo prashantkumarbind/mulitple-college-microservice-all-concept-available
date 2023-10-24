@@ -1,0 +1,42 @@
+package com.pksoftware.serviceimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.pksoftware.dao.HRCollegeDao;
+import com.pksoftware.entity.HRCollege;
+import com.pksoftware.service.HRCollegeService;
+
+
+@Component
+public class HRCollegeServiceImpl implements HRCollegeService{
+
+	@Autowired
+	HRCollegeDao collegeDao;
+	@Override
+	public HRCollege insert(HRCollege college) {
+		HRCollege college2 = collegeDao.save(college); 
+		return college2;
+	}
+
+	@Override
+	public List<HRCollege> select() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HRCollege update(HRCollege college) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String delete() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

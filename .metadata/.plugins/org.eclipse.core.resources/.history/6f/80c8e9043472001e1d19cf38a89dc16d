@@ -1,0 +1,9 @@
+package com.pksoftware.feignservice;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(url="http://localhost:8197", value="PKCollege")
+public interface PKCollegeFeignClient {
+
+		
+}

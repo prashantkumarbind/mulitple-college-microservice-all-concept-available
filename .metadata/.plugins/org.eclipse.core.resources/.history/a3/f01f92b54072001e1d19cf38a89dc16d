@@ -1,0 +1,104 @@
+package com.pksoftware.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pksoftware.controller.entity.AllManage;
+import com.pksoftware.controller.entity.HRCollege;
+import com.pksoftware.controller.entity.IDCollege;
+import com.pksoftware.controller.entity.PKCollege;
+import com.pksoftware.service.Microservices;
+
+@RestController
+public class OfficeController {
+
+		@Autowired
+		Microservices microservices;
+	
+		@GetMapping("/sample/{name}")
+		public String getName(@PathVariable String name) {
+			   return "Your Input Name is the ::"+name;
+		}
+		
+		@GetMapping("/office/{id}")
+		public AllManage microservice1(@PathVariable int id) {
+			   AllManage allManage1 = microservices.microservices(id);
+			   return allManage1;
+		}
+		
+		@GetMapping("/pkoffice/{id}")
+		public PKCollege pkdata(@PathVariable int id) {
+			
+			   PKCollege pkcollege = microservices.pkWork(id);
+			   return pkcollege;
+		}
+		
+		@GetMapping("/test")
+		public String check() {
+			   String message = microservices.check();
+			   return message;
+		}
+		
+		@GetMapping("/hroffice/{id}")
+		public HRCollege hrdata(@PathVariable int id) {
+			   HRCollege hrcollege = microservices.hrWork(id);
+			   return hrcollege;
+		}
+		
+		@GetMapping("/idoffice/{id}")
+		public IDCollege iddata(@PathVariable int id) {
+			   IDCollege idcollege = microservices.idWork(id);
+			   return idcollege;
+		}
+		
+		@GetMapping("/testing/{name}")
+		public String hrTesting(@PathVariable String name) {
+			   String name1 = microservices.hrTesting(name);
+			   return name1;
+		}
+		
+		//use of the getForObject method 
+		
+		@GetMapping("/getdata/{id}")
+		public AllManage getMethodConcept(@PathVariable int id) {
+			   AllManage all = microservices.secondMethodUse(id);
+			   return all;
+		}
+		//bellow use of the all I.D. College concept
+		
+		@GetMapping("/idfeign/{id}")
+		public IDCollege idCollegeDataByUsingFeignClientConcept(@PathVariable int id) {
+			   IDCollege idcollege = microservices.idCollegeDataByFeignClient(id);
+			   return idcollege;
+		}
+		@GetMapping("/idallfeign")
+		public List<IDCollege> allDataIDCollegeByFeignClient(){
+			   List<IDCollege> list = microservices.idCollegeAllDataByFeignClient();
+			   return list;
+		}
+		
+		//bellow use of all P.K. College Concept
+		
+		@GetMapping("/pkfeign/{id}")
+		public PKCollege pkCollegeDataByUsingFeignClientConcept(@PathVariable int id) {
+			   PKCollege pkCollege = microservices.pkCollegeDataByFeignClient(id);
+			   return pkCollege;
+		}
+		
+		@GetMapping("/pkallfeign")
+		public List<PKCollege> pkCollegeAllDataByFeignClient(){
+			   List<PKCollege> pkColleges = microservices.pkCollegeAllDataByFeignClient();
+			   return pkColleges;
+		}
+		
+		//below use of the H.R. College
+		@GetMapping("/hrfeign/{id}")
+		public HRCollege hrCollegeDataByFeignClient(@PathVariable int id) {
+			   HRCollege hrCollege = microservices.hrCollegeDataByFeignClient(id);
+			   return hrCollege;
+		}
+}

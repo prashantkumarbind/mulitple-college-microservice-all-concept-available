@@ -1,0 +1,55 @@
+package com.pksoftware.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pksoftware.controller.entity.AllManage;
+import com.pksoftware.controller.entity.PKCollege;
+import com.pksoftware.service.Microservices;
+
+@RestController
+public class OfficeController {
+
+		@Autowired
+		Microservices microservices;
+	
+		@GetMapping("/testing/{name}")
+		public String getName(@PathVariable String name) {
+			   return "Your Input Name is the ::"+name;
+		}
+		
+		@GetMapping("/office/{id}")
+		public AllManage microservice1(@PathVariable int id) {
+			   AllManage allManage1 = microservices.microservices(id);
+			   return allManage1;
+		}
+		
+		@GetMapping("/pkoffice/{id}")
+		public PKCollege pkdata(@PathVariable int id) {
+			
+			   PKCollege pkcollege = microservices.pkWork(id);
+			   return pkcollege;
+		}
+		
+		@GetMapping("/test")
+		public String check() {
+			   String message = microservices.check();
+			   return message;
+		}
+		
+		@GetMapping("/pkoffice/{id}")
+		public PKCollege hrdata(@PathVariable int id) {
+			
+			   PKCollege pkcollege = microservices.pkWork(id);
+			   return pkcollege;
+		}
+		
+		@GetMapping("/pkoffice/{id}")
+		public PKCollege iddata(@PathVariable int id) {
+			
+			   PKCollege pkcollege = microservices.pkWork(id);
+			   return pkcollege;
+		}
+}

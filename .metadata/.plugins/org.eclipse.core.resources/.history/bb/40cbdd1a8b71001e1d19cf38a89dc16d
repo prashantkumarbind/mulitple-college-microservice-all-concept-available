@@ -1,0 +1,44 @@
+package com.pksoftware.serviceimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.pksoftware.dao.PKCollegeDao;
+import com.pksoftware.entity.PKCollege;
+import com.pksoftware.service.PKCollegeService;
+
+
+@Component
+public class PKCollegeServiceImpl implements PKCollegeService{
+
+	@Autowired
+	PKCollegeDao collegeDao;
+	
+	@Override
+	public PKCollege insert(PKCollege college) {
+		   PKCollege college2 = collegeDao.save(college);
+		return college2;
+	}
+
+	@Override
+	public PKCollege update(PKCollege college) {
+		
+		return null;
+	}
+
+	@Override
+	public List<PKCollege> select() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String delete(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+		
+}

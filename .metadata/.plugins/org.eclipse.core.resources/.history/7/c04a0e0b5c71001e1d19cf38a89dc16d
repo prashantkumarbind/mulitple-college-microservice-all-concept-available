@@ -1,0 +1,8 @@
+package com.pksoftware.service;
+
+import com.pksoftware.entity.HRCollege;
+
+public interface HRCollegeService {
+
+	   HRCollege insert(HRCollege college);//it is incompleted method
+}

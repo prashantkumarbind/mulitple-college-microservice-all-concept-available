@@ -1,0 +1,7 @@
+package com.pksoftware.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface HRCollegeDao extends JpaRepository<HRCollege, Integer>{
+
+}
